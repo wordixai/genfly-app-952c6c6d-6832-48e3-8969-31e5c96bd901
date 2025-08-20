@@ -8,11 +8,64 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-   
+    --background: 249 247 241; /* #F9F7F1 */
+    --foreground: 22 21 21; /* #161615 */
+    --card: 249 247 241;
+    --card-foreground: 22 21 21;
+    --popover: 249 247 241;
+    --popover-foreground: 22 21 21;
+    --primary: 255 88 106; /* #FF586A */
+    --primary-foreground: 255 255 255;
+    --secondary: 89 88 86; /* #595856 */
+    --secondary-foreground: 22 21 21;
+    --muted: 233 231 226; /* #E9E7E2 */
+    --muted-foreground: 89 88 86;
+    --accent: 233 231 226;
+    --accent-foreground: 22 21 21;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 233 231 226; /* #E9E7E2 */
+    --input: 233 231 226;
+    --ring: 255 88 106;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 10.6% 64.9%;
+    
+    /* Custom colors */
+    --macaron-pink: 255 88 106; /* #FF586A */
+    --macaron-orange: 255 89 22; /* #FF5916 */
+    --macaron-yellow: 234 222 57; /* #EADE39 */
+    --macaron-green: 140 167 43; /* #8CA72B */
+    --macaron-light-pink: 255 152 162; /* #FF98A2 */
+    --decoration-bg: 255 230 209; /* #FFE6D1 */
   }
 
   .dark {
-
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 210 20% 98%;
+    --primary-foreground: 220.9 39.3% 11%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 216 12.2% 83.9%;
   }
 }
 
@@ -23,5 +76,54 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+}
+
+@layer utilities {
+  .bg-macaron-gradient {
+    background: linear-gradient(135deg, hsl(var(--macaron-pink)), hsl(var(--macaron-orange)));
+  }
+  
+  .noise-background {
+    position: relative;
+  }
+  
+  .noise-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.3'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    mix-blend-mode: multiply;
+    border-radius: inherit;
+  }
+  
+  .bg-radial-decoration {
+    background: radial-gradient(ellipse at -10% 0%, hsl(var(--decoration-bg)), hsl(var(--background)));
+    background-size: 120% 100%;
+  }
+  
+  .hero-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  
+  .section-title {
+    font-family: 'Inter', serif;
+    font-weight: 400;
+  }
+  
+  .macaron-decoration {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .macaron-decoration:hover {
+    transform: rotate(10deg) translateX(-10px);
+  }
+  
+  .macaron-decoration-right:hover {
+    transform: rotate(15deg) translateY(-20px);
   }
 }
